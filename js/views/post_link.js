@@ -1,0 +1,11 @@
+App.Views.PostLink = Backbone.View.extend({
+  initialize: function(options) {
+    console.log("post link", this.model);
+  },
+  render: function() {
+    var link = "#/post/" + this.model.get("id");
+    this.$el.html("<a href='" + link + "'>" + this.model.get("title") +
+                  "</a>");
+    return this;
+  }
+});
