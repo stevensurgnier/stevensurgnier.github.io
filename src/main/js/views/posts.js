@@ -1,4 +1,9 @@
-App.Views.Posts = Backbone.View.extend({
+goog.provide("ssblog.views.Posts");
+
+goog.require("backbone");
+goog.require("ssblog.views.PostLink");
+
+ssblog.views.Posts = Backbone.View.extend({
   tagName: "div",
   className: "posts",
   initialize: function(options) {
@@ -10,7 +15,7 @@ App.Views.Posts = Backbone.View.extend({
     return this;
   },
   addPost: function(post) {
-    var view = new App.Views.PostLink({model: post});
+    var view = new ssblog.views.PostLink({model: post});
     this.$el.append(view.render().el);
   },
   addPosts: function(posts) {

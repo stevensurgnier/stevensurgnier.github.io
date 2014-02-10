@@ -1,4 +1,8 @@
-App.Views.PostLink = Backbone.View.extend({
+goog.provide("ssblog.views.PostLink");
+
+goog.require("backbone");
+
+ssblog.views.PostLink = Backbone.View.extend({
   initialize: function(options) {
     console.log("post link", this.model);
   },
