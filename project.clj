@@ -6,7 +6,6 @@
   :resource-paths ["src/main/resources"]
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [hiccup "1.0.4"]]
   :profiles {:dev {:plugins [[lein-cljsbuild "0.3.2"]]}}
   :main ssblog.core
   :hooks [leiningen.cljsbuild]
