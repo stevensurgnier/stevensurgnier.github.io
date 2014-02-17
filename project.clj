@@ -6,6 +6,7 @@
   :resource-paths ["src/main/resources"]
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.5.1"]
+                 [cheshire "5.0.2"]]
   :profiles {:dev {:plugins [[lein-cljsbuild "0.3.2"]]}}
   :main ssblog.core
   :hooks [leiningen.cljsbuild]
@@ -25,4 +26,14 @@
         :provides ["d3"]}]
       :pretty-print true
       :output-to "src/main/resources/public/js/ssblog.js"
-      :optimizations :whitespace}}]})
+      :optimizations :whitespace}}]}
+  :orgbuild {:emacs "/Applications/Emacs.app/Contents/MacOS/Emacs"
+             :source-paths ["src/main/org"]
+             :output-js-to "src/main/js/posts.js"
+             :org-load-path "~/.emacs.d/elpa/org-20140210/"
+             :org-export-command
+             '(progn
+               (setq org-export-with-toc nil
+                     org-export-with-section-numbers nil)
+               (org-html-export-as-html nil nil nil t nil)
+               (princ (buffer-string)))})
