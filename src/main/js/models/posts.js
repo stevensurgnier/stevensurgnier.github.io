@@ -5,8 +5,11 @@ goog.require("backbone");
 ssblog.models.Posts = Backbone.Model.extend({
   defaults: function() {
     return {
+      id: "",
       title: "",
-      date: ""
+      date: "",
+      tags: "",
+      body: ""
     };
   }
 });

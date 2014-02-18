@@ -39,6 +39,7 @@
 
 (defn process-org-file
   [config ^File file]
+  (println (format "Processing %s" file))
   (let [html-body (org-to-html config file)
         id (get-org-id file)
         properties (get-org-properties file)]
@@ -57,17 +58,28 @@
   (let [files (find-org-files source-paths)]
     (map (partial process-org-file config) files)))
 
+(defn add-goog-preamble
+  [{:keys [output-js-as]} js-string]
+  (str "goog.provide(" "\"" output-js-as "\"" ");"
+       output-js-as "=" js-string ";"))
+
 (defn write-js
   [{:keys [output-js-to]} js-string]
+  (println (format "Writing javascript file to %s" output-js-to))
   (spit output-js-to js-string))
 
 (defn process-org-files
   [config]
-  (let [save (partial write-js config)]
+  (println "Processing org files")
+  (let [add-goog-preamble-fn (partial add-goog-preamble config)
+        write-js-fn (partial write-js config)]
     (-> config
-         org-files-to-clj
-         generate-string
-         save)))
+        org-files-to-clj
+        generate-string
+        add-goog-preamble-fn
+        write-js-fn)
+    nil))
 
-(defn- main [& args]
-  (process-org-files (get-orgbuild-config)))
+(defn -main [& args]
+  (process-org-files (get-orgbuild-config))
+  (System/exit 0))

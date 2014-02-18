@@ -2,5 +2,8 @@ LEIN ?= lein
 
 default: build
 
-build:
+cljsbuild:
 	$(LEIN) cljsbuild once
+
+build:
+	$(LEIN) do run, cljsbuild once

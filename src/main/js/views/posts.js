@@ -7,7 +7,6 @@ ssblog.views.Posts = Backbone.View.extend({
   tagName: "div",
   className: "posts",
   initialize: function(options) {
-    console.log("posts", this.model);
   },
   render: function() {
     this.$el.empty();

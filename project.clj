@@ -9,7 +9,6 @@
                  [cheshire "5.0.2"]]
   :profiles {:dev {:plugins [[lein-cljsbuild "0.3.2"]]}}
   :main ssblog.core
-  :hooks [leiningen.cljsbuild]
   :cljsbuild
   {:builds
    [{:source-paths ["src/main/cljs"]
@@ -30,6 +29,7 @@
   :orgbuild {:emacs "/Applications/Emacs.app/Contents/MacOS/Emacs"
              :source-paths ["src/main/org"]
              :output-js-to "src/main/js/posts.js"
+             :output-js-as "ssblog.posts"
              :org-load-path "~/.emacs.d/elpa/org-20140210/"
              :org-export-command
              '(progn
