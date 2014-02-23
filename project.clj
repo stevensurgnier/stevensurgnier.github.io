@@ -6,7 +6,8 @@
   :resource-paths ["src/main/resources"]
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [cheshire "5.0.2"]]
+                 [cheshire "5.0.2"]
+                 [org.pegdown/pegdown "1.4.2"]]
   :profiles {:dev {:plugins [[lein-cljsbuild "0.3.2"]]}}
   :main ssblog.core
   :cljsbuild
@@ -26,6 +27,9 @@
       :pretty-print true
       :output-to "src/main/resources/public/js/ssblog.js"
       :optimizations :whitespace}}]}
+  :mdbuild {:source-paths ["src/main/md"]
+            :output-js-to "src/main/js/posts.js"
+            :output-js-as "ssblog.posts"}
   :orgbuild {:emacs "/Applications/Emacs.app/Contents/MacOS/Emacs"
              :source-paths ["src/main/org"]
              :output-js-to "src/main/js/posts.js"
