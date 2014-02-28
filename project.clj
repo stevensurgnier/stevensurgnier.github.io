@@ -1,4 +1,5 @@
 (defproject ssblog "0.0.1"
+  :license {:name "MIT" :url "http://opensource.org/licenses/MIT"}
   :description "webblog"
   :url "http://github.com/stevensurgnier/stevensurgnier.github.io"
   :source-paths ["src/main/clojure"]
