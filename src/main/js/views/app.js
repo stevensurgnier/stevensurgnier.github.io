@@ -1,3 +1,10 @@
+/**
+ * -*- coding: utf-8 -*-
+ *
+ * © 2014 Steven Surgnier
+ * Author: Steven Surgnier <stevensurgnier@gmail.com>
+ */
+
 goog.provide("ssblog.views.App");
 
 goog.require("backbone");
