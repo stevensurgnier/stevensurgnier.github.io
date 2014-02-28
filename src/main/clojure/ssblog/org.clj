@@ -4,7 +4,7 @@
 ;; Author: Steven Surgnier <stevensurgnier@gmail.com>
 ;;
 
-(ns ssblog.emacs
+(ns ssblog.org
   (:require [ssblog.core :refer [get-basename re-seq-to-map
                                  find-files-by-type process-files]]
             [clojure.java.shell :refer [sh]])
