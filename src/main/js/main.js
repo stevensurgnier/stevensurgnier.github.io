@@ -19,11 +19,21 @@ $(document).ready(function() {
     posts: posts
   });
 
+  var renderPost = function(id) {
+    app_view.renderPost(id);
+  }
+
   // init router
   var router = new ssblog.routers.App;
 
   router.on("route:post", function(id) {
-    app_view.renderPost(id);
+    renderPost(id);
+  });
+
+  router.on("route:hotlink", function(id, type, n) {
+    renderPost(id);
+    var el = document.getElementById(type + "-" + n);
+    el.scrollIntoView(true);
   });
 
   router.on("route:default", function(options) {
