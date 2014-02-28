@@ -5,10 +5,17 @@
 ;;
 
 (ns ssblog.org
-  (:require [ssblog.core :refer [get-basename re-seq-to-map
-                                 find-files-by-type process-files]]
+  "Functions to work with org-mode files"
+  (:require [ssblog.util :refer [get-basename re-seq-to-map
+                                 find-files-by-type process-files
+                                 get-config]]
             [clojure.java.shell :refer [sh]])
   (:import [java.io File]))
+
+(defn get-orgbuild-config
+  ([] (get-orgbuild-config {}))
+  ([{:keys [f k] :or {f "project.clj" k :orgbuild}}]
+     (-> (get-config f) (get k))))
 
 (defn org-to-html
   [{:keys [emacs org-load-path org-export-command]} ^File file]
@@ -44,5 +51,6 @@
   (let [files (find-org-files source-paths)]
     (map (partial process-org-file config) files)))
 
-(def process-org-files
-  (partial process-files org-files-to-clj))
+(defn process-org-files
+  ([] (process-org-files (get-orgbuild-config)))
+  ([config] (process-files org-files-to-clj config)))
