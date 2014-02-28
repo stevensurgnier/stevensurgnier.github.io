@@ -2,7 +2,7 @@
   (:require [clojure.java.shell :refer [sh]]
             [cheshire.core :refer [generate-string]])
   (:import [java.io File]
-           [org.pegdown PegDownProcessor]))
+           [org.pegdown PegDownProcessor Extensions]))
 
 ;; config
 
@@ -114,8 +114,11 @@
 
 ;; md
 
+(def extensions
+  [Extensions/FENCED_CODE_BLOCKS Extensions/TABLES])
+
 (def peg-down-processor
-  (PegDownProcessor. org.pegdown.Extensions/FENCED_CODE_BLOCKS))
+  (PegDownProcessor. (int (apply bit-or extensions))))
 
 (def split-file-on-triple-dash
   (partial split-file-on "---"))
@@ -164,5 +167,5 @@
 
 (defn -main [& args]
   (println "Processing files")
-  (process-org-files (get-orgbuild-config))
+  (process-md-files (get-mdbuild-config))
   (System/exit 0))
