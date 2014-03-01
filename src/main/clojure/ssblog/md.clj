@@ -9,9 +9,13 @@
   (:require [ssblog.util :refer [get-basename re-seq-to-map
                                  find-files-by-type process-files
                                  get-config split-file-on]]
-            [hiccup.core :as html])
+            [hiccup.core :as html]
+            [clojure.string :as string])
   (:import [java.io File]
            [org.pegdown PegDownProcessor Extensions]))
+
+(defn get-whole-number [n]
+  (first (string/split n #"\." 2)))
 
 (defn get-mdbuild-config
   ([] (get-mdbuild-config {}))
@@ -71,7 +75,7 @@
 
 (defn href-with-root
   [root & paths]
-  (clojure.string/join "/" (list* root paths)))
+  (string/join "/" (list* root paths)))
 
 (def post-href (partial href-with-root "#/post"))
 
@@ -147,6 +151,29 @@
         matches (re-seq #"(?s)\{\{(\w+) ([^\}]+)\}\}" body)
         args (map rest matches)]
     (map preprocess args)))
+
+;; hotlinks
+
+(defn hotlink-to-html
+  [id [type number]]
+  (html [:a {:class (str "hotlink" " " type)
+             :href (post-href id type number)}
+         number]))
+
+(defn get-hotlink-id
+  [nid-map number]
+  (get nid-map (get-whole-number number)))
+
+(defn get-hotlink-ids
+  [nid-map numbers]
+  (map (partial get-hotlink-id nid-map) numbers))
+
+(defn preprocess-hotlinks
+  [{:keys [nid-map body properties]}]
+  (let [matches (re-seq #"!\[(\w+) ([\d\.]+)\][^\(]" body)
+        args (map rest matches)
+        ids (get-hotlink-ids nid-map (map second args))]
+    (map hotlink-to-html ids args)))
 
 (defn preprocess-md
   [nid-map body properties]
