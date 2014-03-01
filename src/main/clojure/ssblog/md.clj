@@ -120,6 +120,15 @@
        :table table
        :title title
        :footer footer})))
+
+(defn preprocess-code
+  [id [element body]]
+  (when-let [match (re-find #"(?s)([\d\.]+) \[([^\]]+)\] \[([\w ]+)\] \[([\w ]+)\]" body)]
+    (let [[_ number code title footer] match]
+      {:element element
+       :number number
+       :code code
+       :title title
        :footer footer})))
 
 (defn preprocess-special-element
@@ -128,6 +137,7 @@
       "eq" (preprocess-equation id element-and-body)
       "fig" (preprocess-figure id element-and-body)
       "table" (preprocess-table id element-and-body)
+      "code" (preprocess-code id element-and-body)
       nil))
 
 (defn preprocess-special-elements
