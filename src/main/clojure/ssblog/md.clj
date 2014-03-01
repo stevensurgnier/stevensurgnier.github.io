@@ -113,12 +113,13 @@
 
 (defn preprocess-table
   [id [element body]]
-  (when-let [match (re-find #"(?s)([\d\.]+) \[([\w ]+)\] \[([^\]]+)\] \[([\w ]+)\]" body)]
-    (let [[_ number title table footer] match]
+  (when-let [match (re-find #"(?s)([\d\.]+) \[([^\]]+)\] \[([\w ]+)\] \[([\w ]+)\]" body)]
+    (let [[_ number table title footer] match]
       {:element element
        :number number
-       :title title
        :table table
+       :title title
+       :footer footer})))
        :footer footer})))
 
 (defn preprocess-special-element
