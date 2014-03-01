@@ -8,7 +8,8 @@
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [cheshire "5.0.2"]
-                 [org.pegdown/pegdown "1.4.2"]]
+                 [org.pegdown/pegdown "1.4.2"]
+                 [hiccup "1.0.5"]]
   :profiles {:dev {:plugins [[lein-cljsbuild "0.3.2"]]}}
   :main ssblog.core
   :cljsbuild
@@ -17,14 +18,19 @@
      :compiler
      {:libs ["src/main/js"]
       :foreign-libs
-      [{:file "http://zeptojs.com/zepto.min.js"
+      [{;; :file "http://zeptojs.com/zepto.min.js"
+        :file "/Users/stevensurgnier/lib/js/zepto.min.js"
         :provides ["zepto"]}
-       {:file "http://underscorejs.org/underscore-min.js"
+       {;; :file "http://underscorejs.org/underscore-min.js"
+        :file "/Users/stevensurgnier/lib/js/underscore-min.js"
         :provides ["underscore"]}
-       {:file "http://backbonejs.org/backbone-min.js"
+       {;; :file "http://backbonejs.org/backbone-min.js"
+        :file "/Users/stevensurgnier/lib/js/backbone-min.js"
         :provides ["backbone"]}
-       {:file "https://raw.github.com/mbostock/d3/v3.4.1/d3.min.js"
-        :provides ["d3"]}]
+       {;; :file "https://raw.github.com/mbostock/d3/v3.4.1/d3.min.js"
+        :file "/Users/stevensurgnier/lib/js/d3.min.js"
+        :provides ["d3"]}
+       ]
       :pretty-print true
       :output-to "src/main/resources/public/js/ssblog.js"
       :optimizations :whitespace}}]}

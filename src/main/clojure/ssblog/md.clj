@@ -8,7 +8,8 @@
   "Functions to work with markdown files"
   (:require [ssblog.util :refer [get-basename re-seq-to-map
                                  find-files-by-type process-files
-                                 get-config split-file-on]])
+                                 get-config split-file-on]]
+            [hiccup.core :as html])
   (:import [java.io File]
            [org.pegdown PegDownProcessor Extensions]))
 
@@ -27,30 +28,29 @@
   (partial split-file-on "---"))
 
 (defn split-md-into-metadata-and-body
-  [^File file]
-  (-> file slurp split-file-on-triple-dash))
+  [md]
+  (-> md split-file-on-triple-dash))
 
 (defn get-md-body
-  [^File file]
-  (:body (split-md-into-metadata-and-body file)))
-
-(defn md-to-html
-  [^File file]
-  (.markdownToHtml peg-down-processor (get-md-body file)))
+  [md]
+  (:body (split-md-into-metadata-and-body md)))
 
 (defn get-md-metadata
-  [^File file]
-  (:metadata (split-md-into-metadata-and-body file)))
+  [md]
+  (:metadata (split-md-into-metadata-and-body md)))
 
-(defn get-md-properties
-  [^File file]
-  (re-seq-to-map #"(.+): (.+)[\n|$]" (get-md-metadata file)))
+(defn md-to-html
+  [md-body]
+  (.markdownToHtml peg-down-processor md-body))
 
-(def get-md-id get-basename)
+(def get-md-properties
+  (partial re-seq-to-map #"(.+): (.+)[\n|$]"))
+
+#_(def get-md-id get-basename)
 
 (def find-md-files (partial find-files-by-type ".md"))
 
-(defn process-md-file
+#_(defn process-md-file
   [^File file]
   (println (format "Processing %s" file))
   (let [id (get-md-id file)
@@ -58,10 +58,102 @@
         html-body (md-to-html file)]
     (merge {:id id} properties {:body html-body})))
 
+(defn files-to-strings
+  [files]
+  (map slurp files))
+
+(defn get-nid-map
+  "Accept a sequence of md property maps. Return a map from :n to :id."
+  [seq-md-properties]
+  (->> seq-md-properties
+       (map #(hash-map (:n %) (:id %)))
+       (into {})))
+
+(defn href-with-root
+  [root & paths]
+  (clojure.string/join "/" (list* root paths)))
+
+(def post-href (partial href-with-root "#/post"))
+
+;; sections
+
+(defn section-to-html
+  [id [symbols number title]]
+  (let [n (count symbols)]
+    (html [:a {:class "sec" :id (str "sec" "-" number)
+               :href (post-href id "sec" number)}
+           [(keyword (str "h" n)) (str number " " title)] ])))
+
+(defn preprocess-sections
+  [{:keys [nid-map body properties]}]
+  (let [{:keys [id]} properties
+        matches (re-seq #"(#+) ([\d\.]+) ([\w ]+)" body)
+        args (map rest matches)]
+    (map (partial section-to-html id) args)))
+
+;; special-elements
+
+(defn preprocess-equation
+  [id [element body]]
+  (when-let [match (re-find #"([\d\.]+) (.+)" body)]
+    (let [[_ number equation] match]
+      {:element element
+       :number number
+       :equation equation})))
+
+(defn preprocess-figure
+  [id [element body]]
+  (when-let [match (re-find #"([\d\.]+) ([\w://\.]+) \[([\w ]+)\] \[([\w ]+)\]" body)]
+    (let [[_ number link title footer] match]
+      {:element element
+       :number number
+       :title title
+       :link link
+       :footer footer})))
+
+(defn preprocess-table
+  [id [element body]]
+  (when-let [match (re-find #"(?s)([\d\.]+) \[([\w ]+)\] \[([^\]]+)\] \[([\w ]+)\]" body)]
+    (let [[_ number title table footer] match]
+      {:element element
+       :number number
+       :title title
+       :table table
+       :footer footer})))
+
+(defn preprocess-special-element
+  [id element-and-body]
+  (case (first element-and-body)
+      "eq" (preprocess-equation id element-and-body)
+      "fig" (preprocess-figure id element-and-body)
+      "table" (preprocess-table id element-and-body)
+      nil))
+
+(defn preprocess-special-elements
+  [{:keys [nid-map body properties]}]
+  (let [{:keys [id]} properties
+        preprocess (partial preprocess-special-element id)
+        matches (re-seq #"(?s)\{\{(\w+) ([^\}]+)\}\}" body)
+        args (map rest matches)]
+    (map preprocess args)))
+
+(defn preprocess-md
+  [nid-map body properties]
+  (-> {:nid-map nid-map :body body :properties properties}
+      preprocess-sections
+      preprocess-special-elements
+      preprocess-hotlinks))
+
 (defn md-files-to-clj
   [{:keys [source-paths] :as config}]
-  (let [files (find-md-files source-paths)]
-    (map process-md-file files)))
+  (let [files (find-md-files source-paths)
+        str-files (files-to-strings files)
+        seq-metadata-and-body (map split-md-into-metadata-and-body str-files)
+        seq-metadata (map :metadata seq-metadata-and-body)
+        seq-body (map :body seq-metadata-and-body)
+        seq-properties (map get-md-properties seq-metadata)
+        nid-map (get-nid-map seq-properties)]
+    (map (partial preprocess-md nid-map) seq-body seq-properties)))
 
 (defn process-md-files
   ([] (process-md-files (get-mdbuild-config)))
