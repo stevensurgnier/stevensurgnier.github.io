@@ -22,9 +22,10 @@ eq = #'(?s).*?(?=#\+end_eq)'
 (* figure block *)
 <begin-fig> = <'#+begin_fig'>
 <end-fig> = <'#+end_fig'>
-figure = begin-fig space number EOL path EOL footer end-fig
+figure = begin-fig space number EOL path (EOL | EOL EOL) fig-footer
+  EOL end-fig EOL
 path = #'.+'
-footer = #'(?s).*?(?=#\+end)'
+fig-footer = #'(?s).*?(?=\n#\+end_fig)'
 (* table block *)
 <begin-table> = <'#+begin_table'>
 <end-table> = <'#+end_table'>
