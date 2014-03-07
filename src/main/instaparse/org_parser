@@ -1,4 +1,4 @@
-<elements> = (block | property | section | EOL)+
+<S> = (block | property | section | EOL)+
 <block> = (src | annotated-src | equation | figure | table-block)
 (* src block *)
 <begin-src> = <'#+begin_src'>
