@@ -18,8 +18,8 @@ code = #'(?s).*?(?=\n#\+end_src)'
 (* equation block *)
 <begin-eq> = <'#+begin_eq'>
 <end-eq> = <'#+end_eq'>
-equation = begin-eq space number EOL eq end-eq
-eq = #'(?s).*?(?=#\+end_eq)'
+equation = begin-eq space number EOL eq EOL end-eq
+eq = #'(?s).*?(?=\n#\+end_eq)'
 
 (* figure block *)
 <begin-fig> = <'#+begin_fig'>
