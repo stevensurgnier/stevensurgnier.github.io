@@ -1,5 +1,6 @@
-<elements> = (block | property | header | EOL)+
-<block> = (src | annotated-src)
+<elements> = (block | property | section | EOL)+
+<block> = (src | annotated-src | equation | figure | table-block)
+(* src block *)
 <begin-src> = <'#+begin_src'>
 <end-src> = <'#+end_src'>
 src =  begin-src space language EOL code+ end-src EOL
@@ -12,5 +13,32 @@ language = #'\S+'
 number = #'[\d\.]+'
 description = #'[\S\ ]+'
 code = #'(?s).*?(?=#\+end_src)'
+(* equation block *)
+<begin-eq> = <'#+begin_eq'>
+<end-eq> = <'#+end_eq'>
+equation = begin-eq space number EOL eq end-eq
+eq = #'(?s).*?(?=#\+end_eq)'
+(* figure block *)
+<begin-fig> = <'#+begin_fig'>
+<end-fig> = <'#+end_fig'>
+figure = begin-fig space number EOL path EOL footer end-fig
+path = #'.+'
+footer = #'(?s).*?(?=#\+end)'
+(* table block *)
+<begin-table> = <'#+begin_table'>
+<end-table> = <'#+end_table'>
+table-block = begin-table space number EOL table EOL footer end-table
+table = #'(?s).*?(?=\n\n)'
+(* property *)
 property = <'#+'> (word | space)+ EOL
-header = <'*'+> (word | space)+ EOL
+(* section *)
+section = (sec1 | sec2 | sec3 | sec4 | sec5 | sec6 | sec7 | sec8)
+sec1 = <#'\*{1}'> description EOL
+sec2 = <#'\*{2}'> description EOL
+sec3 = <#'\*{3}'> description EOL
+sec4 = <#'\*{4}'> description EOL
+sec5 = <#'\*{5}'> description EOL
+sec6 = <#'\*{6}'> description EOL
+sec7 = <#'\*{7}'> description EOL
+sec8 = <#'\*{8}'> description EOL
+
