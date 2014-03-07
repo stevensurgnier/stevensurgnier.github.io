@@ -3,9 +3,9 @@
 (* src block *)
 <begin-src> = <'#+begin_src'>
 <end-src> = <'#+end_src'>
-src =  begin-src space language EOL code+ EOL end-src EOL
+src =  begin-src space language EOL code EOL end-src EOL
 annotated-src = begin-src space language space number space
-description EOL code+ EOL end-src EOL
+  description EOL code EOL end-src EOL
 <whitespace> = <#'\s+'>
 <space> = <' '>
 <EOL> = <'\n'>
