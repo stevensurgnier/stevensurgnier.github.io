@@ -29,7 +29,9 @@ fig-footer = #'(?s).*?(?=\n#\+end_fig)'
 (* table block *)
 <begin-table> = <'#+begin_table'>
 <end-table> = <'#+end_table'>
-table-block = begin-table space number EOL table EOL footer end-table
+table-block = begin-table space number EOL table (EOL | EOL EOL)
+  table-footer EOL end-table EOL
+table-footer = #'(?s).*?(?=\n#\+end_table)'
 table = #'(?s).*?(?=\n\n)'
 (* property *)
 name = #'[\w\d]+'
