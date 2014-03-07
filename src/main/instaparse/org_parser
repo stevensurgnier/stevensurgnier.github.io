@@ -3,8 +3,9 @@
 (* src block *)
 <begin-src> = <'#+begin_src'>
 <end-src> = <'#+end_src'>
-src =  begin-src space language EOL code+ end-src EOL
-annotated-src = begin-src space language space number space description EOL code+ end-src EOL
+src =  begin-src space language EOL code+ EOL end-src EOL
+annotated-src = begin-src space language space number space
+description EOL code+ EOL end-src EOL
 <whitespace> = <#'\s+'>
 <space> = <' '>
 <EOL> = <'\n'>
@@ -12,7 +13,7 @@ word = #'\S+'
 language = #'\S+'
 number = #'[\d\.]+'
 description = #'[\S\ ]+'
-code = #'(?s).*?(?=#\+end_src)'
+code = #'(?s).*?(?=\n#\+end_src)'
 (* equation block *)
 <begin-eq> = <'#+begin_eq'>
 <end-eq> = <'#+end_eq'>
