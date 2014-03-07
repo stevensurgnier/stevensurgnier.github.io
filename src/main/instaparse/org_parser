@@ -1,0 +1,16 @@
+<elements> = (block | property | header | EOL)+
+<block> = (src | annotated-src)
+<begin-src> = <'#+begin_src'>
+<end-src> = <'#+end_src'>
+src =  begin-src space language EOL code+ end-src EOL
+annotated-src = begin-src space language space number space description EOL code+ end-src EOL
+<whitespace> = <#'\s+'>
+<space> = <' '>
+<EOL> = <'\n'>
+word = #'\S+'
+language = #'\S+'
+number = #'[\d\.]+'
+description = #'[\S\ ]+'
+code = #'(?s).*?(?=#\+end_src)'
+property = <'#+'> (word | space)+ EOL
+header = <'*'+> (word | space)+ EOL
