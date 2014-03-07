@@ -1,4 +1,4 @@
-<S> = (block | property | section | EOL)+
+<S> = (block | property | section | paragraph | EOL)+
 <block> = (src | annotated-src | equation | figure | table-block)
 <space> = <' '>
 <EOL> = <'\n'>
@@ -52,3 +52,6 @@ sec5 = <#'\*{5}'> space description EOL
 sec6 = <#'\*{6}'> space description EOL
 sec7 = <#'\*{7}'> space description EOL
 sec8 = <#'\*{8}'> space description EOL
+
+(* paragraph *)
+paragraph = #'[^\#=\-\d\*]+'
