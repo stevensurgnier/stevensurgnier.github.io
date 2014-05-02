@@ -1,0 +1,57 @@
+<S> = (block | property | section | paragraph | EOL)+
+<block> = (src | annotated-src | equation | figure | table-block)
+<space> = <' '>
+<EOL> = <'\n'>
+<whitespace> = <#'\s+'>
+
+(* src block *)
+<begin-src> = <'#+begin_src'>
+<end-src> = <'#+end_src'>
+src =  begin-src space language EOL code EOL end-src EOL
+annotated-src = begin-src space language space number space
+  description EOL code EOL end-src EOL
+language = #'\S+'
+number = #'[\d\.]+'
+description = #'[\S\ ]+'
+code = #'(?s).*?(?=\n#\+end_src)'
+
+(* equation block *)
+<begin-eq> = <'#+begin_eq'>
+<end-eq> = <'#+end_eq'>
+equation = begin-eq space number EOL eq EOL end-eq
+eq = #'(?s).*?(?=\n#\+end_eq)'
+
+(* figure block *)
+<begin-fig> = <'#+begin_fig'>
+<end-fig> = <'#+end_fig'>
+figure = begin-fig space number EOL path (EOL | EOL EOL) fig-footer
+  EOL end-fig EOL
+path = #'.+'
+fig-footer = #'(?s).*?(?=\n#\+end_fig)'
+
+(* table block *)
+<begin-table> = <'#+begin_table'>
+<end-table> = <'#+end_table'>
+table-block = begin-table space number EOL table (EOL | EOL EOL)
+  table-footer EOL end-table EOL
+table-footer = #'(?s).*?(?=\n#\+end_table)'
+table = #'(?s).*?(?=\n\n)'
+
+(* property *)
+name = #'[\w\d]+'
+value = #'.+'
+property = <'#+'> name <':'> space value EOL
+
+(* section *)
+section = (sec1 | sec2 | sec3 | sec4 | sec5 | sec6 | sec7 | sec8)
+sec1 = <#'\*{1}'> space description EOL
+sec2 = <#'\*{2}'> space description EOL
+sec3 = <#'\*{3}'> space description EOL
+sec4 = <#'\*{4}'> space description EOL
+sec5 = <#'\*{5}'> space description EOL
+sec6 = <#'\*{6}'> space description EOL
+sec7 = <#'\*{7}'> space description EOL
+sec8 = <#'\*{8}'> space description EOL
+
+(* paragraph *)
+paragraph = #'[^\#=\-\d\*]+'

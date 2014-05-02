@@ -1,3 +1,10 @@
+/**
+ * -*- coding: utf-8 -*-
+ *
+ * © 2014 Steven Surgnier
+ * Author: Steven Surgnier <stevensurgnier@gmail.com>
+ */
+
 $(document).ready(function() {
   var lineData = [{"x": 5, "y":  1},
                   {"x": 2, "y":  0},
