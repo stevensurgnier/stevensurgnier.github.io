@@ -1,36 +1,110 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
-    <script src="src/main/resources/public/js/ssblog.js"></script>
-    <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.3-latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <meta name="viewport" content="width=device-width">
+    <title>stevensurgnier</title>
+    <meta name="description" content="Where to find me on the web.">
+    <meta name="author" content="Steven Surgnier <stevensurgnier@gmail.com>">
+    <style>
+      body {font-family: Helvetica Neue, sans-serif;}
+      body a:link {color: #888888;}
+      body a:visited {color: #484848;}
+      body a:hover {color: black;}
+      body a:active {color: #888888;}
+      body ul {list-style-type: none;}
+      #name {margin: 2em 0 2em 0;}
+      #name h2 {
+        font-size: 2em;
+        text-align: center;
+      }
+      #info {text-align: center;}
+      #info ul {
+        margin: 0;
+        padding: 0;
+      }
+      #info div {margin: 0.5em 0 0.5em 0;}
+      #copyright-button {
+       cursor: pointer;
+       text-decoration: underline;
+      }
+    </style>
+    <script type="text/javascript">
+      function toggle(id) {
+        console.log(id);
+        var e = document.getElementById(id);
+        e.style.display = e.style.display != "none" ? "none" : "block";
+      }
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-50597825-1', 'stevensurgnier.com');
+      ga('send', 'pageview');
+    </script>
   </head>
   <body>
     <div id="header">
       <svg height="15" width="100%">
-        <a xlink:href="/#"><text x="2" y="12" fill="black">~</text></a>
         <line x1="0" y1="1" x2="100%" y2="1" style="stroke:black;stroke-width:2"/>
-        <line x1="14" y1="7" x2="100%" y2="7" style="stroke:black;stroke-width:6"/>
+        <line x1="0" y1="7" x2="100%" y2="7" style="stroke:black;stroke-width:6"/>
         <line x1="0" y1="13" x2="100%" y2="13" style="stroke:black;stroke-width:2"/>
       </svg>
-      <!-- <svg height="1000" width="1000"> -->
-      <!--   <path style="fill:none;stroke:black;stroke-width:4" d="M100,200 C100,100 250,100 250,200 S400,300 400,200" /> -->
-      <!-- </svg> -->
     </div>
-    <!-- <div id="curve"></div> -->
-    <div id="app">
+    <div id="content">
+      <div id="name">
+        <h2>Steven Surgnier</h2>
+      </div>
+      <div id="info">
+        <div id="work">
+          <ul>
+            <li>Data <a href="https://www.simple.com/">@SIMPLE</a></li>
+          </ul>
+        </div>
+        <div id="web">
+          <ul>
+            <li><a href="https://twitter.com/stevensurgnier">twitter.com/stevensurgnier</a></li>
+            <li><a href="https://github.com/stevensurgnier">github.com/stevensurgnier</a></li>
+            <li><a href="https://www.linkedin.com/in/stevensurgnier">linkedin.com/in/stevensurgnier</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div id="footer">
       <svg height="30" width="100%">
         <line x1="0" y1="1" x2="100%" y2="1" style="stroke:black;stroke-width:2"/>
         <line x1="0" y1="6" x2="100%" y2="6" style="stroke:black;stroke-width:2"/> 
         <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:2"/> 
-      <line x1="0" y1="18" x2="100%" y2="18" style="stroke:black;stroke-width:6"/> 
-     <div>
-        <p>Steven Surgnier</p>
+        <line x1="0" y1="18" x2="100%" y2="18" style="stroke:black;stroke-width:6"/> 
+      </svg>
+      <a id="copyright-button" onclick="toggle('copyright');">copyright</a>
+      <div id="copyright" style="display:none;">
+        <p>Unless otherwise indicated, all code and text on this web site is published under the following MIT license:</p>
+        <pre>
+          <code>
+Copyright (c) 2014 Steven Surgnier &ltstevensurgnier@gmail.com&gt
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+ 
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+ 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+          </code>
+        </pre>
       </div>
-     </svg>
     </div>
   </body>
-
 </html>
