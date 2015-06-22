@@ -78,3 +78,12 @@ Auburn University, 2010
 ## Bachelor of Science in Electrical Engineering
 
 Auburn University, 2008
+
+# Publications
+
+## [Porous Ceramic Packaging for a MEMS Humidity Sensor Requiring Environmental Access](http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=5737772)
+
+May 22, 2011
+
+IEEE Transactions on Components, Packaging and Manufacturing Technology
+
