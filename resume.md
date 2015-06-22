@@ -6,7 +6,7 @@ www.stevensurgnier.com
 
 Portland, OR
 
-![headshot](headshot.jpg)
+![headshot](https://raw.githubusercontent.com/stevensurgnier/stevensurgnier.github.io/master/headshot.jpg)
 
 # Bio
 
