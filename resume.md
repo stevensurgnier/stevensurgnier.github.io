@@ -34,7 +34,7 @@ remarkable team projects:
 
 September 2012 - February 2015
 
-## April 2014 - February 2015
+### April 2014 - February 2015
 
 - hire and manage a team of 2 data analysts and 4 data engineers
 
@@ -42,14 +42,14 @@ remarkable team projects:
 - developed streaming mini-batch loading into redshift
 - common points of purchase analysis for early compromised card detection
 
-## April 2013 - April 2014
+### April 2013 - April 2014
 
 - co-architect and co-developer of data platform
   - kafka -> storm -> s3 with Avro for serialization
   - EMR for hourly loading into redshift
 - used machine learning to infer what actions in the first four weeks are predictive of engagement on the eighth week
 
-## September 2012 - April 2013
+### September 2012 - April 2013
 
 - interfaced directly with the leadership team
 - responsible for analysis and design of experiments
