@@ -1,6 +1,9 @@
 Steven Surgnier
+
 stevensurgnier@gmail.com
+
 www.stevensurgnier.com
+
 Portland, OR
 
 ![headshot](headshot.jpg)
