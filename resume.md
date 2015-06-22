@@ -19,9 +19,7 @@ Danni and son Duncan.
 
 # Experience
 
-## Director of Data
-
-Simple
+## Director of Data, Simple
 
 February 2015 - Present
 
@@ -32,9 +30,7 @@ remarkable team projects:
   - topic analysis was used to prioritize improvements in the product
 - prototyped streaming logical decoding of postgres to redshift via kafka
 
-## Data Scientist
-
-Simple
+## Data Scientist, Simple
 
 September 2012 - February 2015
 
@@ -60,9 +56,7 @@ remarkable team projects:
 - responsible for creation and reporting of KPIs
 - developed reports and dashboards in R
 
-## Product Engineer
-
-Lattice Semiconductor
+## Product Engineer, Lattice Semiconductor
 
 June 2010 - August 2012
 
