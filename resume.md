@@ -26,7 +26,7 @@ Danni and son Duncan.
 
 February 2015 - Present
 
-- hire and manage a team of 5 data analysts and 4 data engineers
+- serve and lead a team of 5 data analysts, 4 data engineers, and an engineering manager
 
 remarkable team projects:
 - used unsupervised techniques to discover topics in unstructured text submitted by customers in survey feedback and customer support messages
