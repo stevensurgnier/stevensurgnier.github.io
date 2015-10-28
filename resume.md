@@ -12,9 +12,7 @@ Portland, OR
 
 Steven Surgnier is an adamant believer that organizations should promote
 the evolution of society on a sustainable course that benefits
-humankind. He is the Director of Data at Simple, a company that is
-working to radically redesign banking by using modern technology to help
-people worry less about money. Steven is a science enthusiast. He took
+humankind. Steven is a science enthusiast. He took
 courses in biology and organic chemistry for fun while obtaining his
 Masters of Electrical Engineering. His current research interests are in
 representation learning. Steven lives in Portland, Oregon with his wife
@@ -24,7 +22,7 @@ Danni and son Duncan.
 
 ## Director of Data, Simple
 
-February 2015 - Present
+February 2015 - October 2015
 
 - serve and lead a team of 5 data analysts, 4 data engineers, and an engineering manager
 
