@@ -4,7 +4,7 @@ stevensurgnier@gmail.com
 
 www.stevensurgnier.com
 
-Portland, OR
+Brooklyn, NY
 
 ![headshot](https://raw.githubusercontent.com/stevensurgnier/stevensurgnier.github.io/master/headshot.jpg)
 
@@ -15,10 +15,14 @@ the evolution of society on a sustainable course that benefits
 humankind. Steven is a science enthusiast. He took
 courses in biology and organic chemistry for fun while obtaining his
 Masters of Electrical Engineering. His current research interests are in
-representation learning. Steven lives in Portland, Oregon with his wife
+representation learning. Steven lives in Brooklyn, New York with his wife
 Danni and son Duncan.
 
 # Experience
+
+## Co-Founder, CTO of Something New
+
+October 2015 - Present
 
 ## Director of Data, Simple
 
