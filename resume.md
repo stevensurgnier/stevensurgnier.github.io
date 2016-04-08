@@ -20,7 +20,7 @@ Danni and son Duncan.
 
 # Experience
 
-## Co-Founder, CTO of Something New
+## Co-Founder and CTO, Something New
 
 October 2015 - Present
 
