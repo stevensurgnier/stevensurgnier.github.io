@@ -28,7 +28,7 @@ October 2015 - Present
 
 February 2015 - October 2015
 
-- serve and lead a team of 5 data analysts, 4 data engineers, and an engineering manager
+- serve and lead a team of 4 data analysts, 5 data engineers, and 2 engineering managers
 
 remarkable team projects:
 - used unsupervised techniques to discover topics in unstructured text submitted by customers in survey feedback and customer support messages
