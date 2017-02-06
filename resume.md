@@ -20,7 +20,7 @@ Danni and son Duncan.
 
 # Experience
 
-## Co-Founder and CTO, Something New
+## Co-Founder and CTO, Fabric Technologies, Inc.
 
 October 2015 - Present
 
