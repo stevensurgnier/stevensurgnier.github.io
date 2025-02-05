@@ -20,9 +20,13 @@ Danni and son Duncan.
 
 # Experience
 
+## Co-Founder and CEO, Fabric Technologies, Inc.
+
+February 2025 - Present
+
 ## Co-Founder and CTO, Fabric Technologies, Inc.
 
-October 2015 - Present
+October 2015 - February 2025
 
 ## Director of Data, Simple
 
